@@ -2,7 +2,7 @@
 
 Self-hosted control, scheduling, automation, and biometrics for Pod mattress covers (Pod 3, 4, and 5). Everything runs locally on the Pod's embedded Linux. No cloud account, no internet required.
 
-**Docs:** [sleepypod.github.io](https://sleepypod.github.io/) · **Community:** [Discord](https://discord.gg/UMmv5R6MXa) · **License:** AGPL-3.0
+**Docs:** [sleepypod.github.io](https://sleepypod.github.io/) · **Live demo:** [sleepypod.vercel.app](https://sleepypod.vercel.app) · **Community:** [Discord](https://discord.gg/UMmv5R6MXa) · **License:** AGPL-3.0
 
 ## Repositories
 
@@ -14,7 +14,7 @@ The server that runs on the Pod. A local web app for per-side temperature, sched
 
 ### [ios](https://github.com/sleepypod/ios)
 
-Native iOS companion for temperature control and sleep tracking. Radial dial, schedule curves, biometrics charts, on-device sleep stage classification, and system health. Finds the Pod automatically over mDNS. Currently a developer build: build it from source with Xcode and point it at your own Pod.
+Native iOS companion for temperature control and sleep tracking. Radial dial, schedule curves, biometrics charts, on-device sleep stage classification, and system health. Writes each night's stages and vitals to Apple Health and compares any night with what an Apple Watch recorded. Finds the Pod automatically over mDNS. A TestFlight beta is in progress; until then, build it from source with Xcode.
 
 **Stack:** Swift 6, SwiftUI, Swift Charts · iOS 26+
 
@@ -63,8 +63,8 @@ graph TD
     DAC --- HW
 ```
 
-All communication stays on your local network. Core keeps the Pod behind a LAN-only firewall policy, and the HomeKit and MQTT bridges are off until you enable them.
+All communication stays on your local network. Core keeps the Pod behind a LAN-only firewall policy, and the HomeKit and MQTT bridges are off until you enable them. sleepypod collects no data; see the [privacy policy](https://sleepypod.github.io/privacy/).
 
 ## Getting Started
 
-Start with the [getting started guide](https://sleepypod.github.io/getting-started/), then see the [core README](https://github.com/sleepypod/core#readme) for installation details.
+Start with the [getting started guide](https://sleepypod.github.io/getting-started/), or try the [live demo](https://sleepypod.vercel.app) first. Coming from free-sleep? Follow the [migration guide](https://sleepypod.github.io/core/migrating-from-free-sleep/). See the [core README](https://github.com/sleepypod/core#readme) for installation details.
