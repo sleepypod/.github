@@ -2,25 +2,27 @@
 
 Self-hosted control, scheduling, automation, and biometrics for Pod mattress covers (Pod 3, 4, and 5). Everything runs locally on the Pod's embedded Linux. No cloud account, no internet required.
 
+**Video tour:** [See sleepypod Core in action](https://sleepypod.github.io/core/tour/)
+
 **Docs:** [sleepypod.github.io](https://sleepypod.github.io/) · **Live demo:** [sleepypod.vercel.app](https://sleepypod.vercel.app) · **Community:** [Discord](https://discord.gg/UMmv5R6MXa) · **License:** AGPL-3.0
 
 ## Repositories
 
-### [core](https://github.com/sleepypod/core)
+### [sleepypod Core](https://github.com/sleepypod/core)
 
 The server that runs on the Pod. A local web app for per-side temperature, schedules, vibration alarms, and daily maintenance; Autopilot rules that react to signals and conditions, with backtests against recorded nights; on-device biometrics (heart rate, HRV, breathing rate, sleep staging) from the Pod's own sensors. Opt-in bridges for Home Assistant (MQTT) and Apple Home (HomeKit), and a Model Context Protocol server so an AI agent can read or control the Pod.
 
 **Stack:** TypeScript, Next.js, React, tRPC, SQLite, Drizzle, Python biometrics sidecars
 
-### [ios](https://github.com/sleepypod/ios)
+### [sleepypod iOS](https://github.com/sleepypod/ios)
 
 Native iOS companion for temperature control and sleep tracking. Radial dial, schedule curves, biometrics charts, on-device sleep stage classification, and system health. Writes each night's stages and vitals to Apple Health and compares any night with what an Apple Watch recorded. Finds the Pod automatically over mDNS. A TestFlight beta is in progress; until then, build it from source with Xcode.
 
 **Stack:** Swift 6, SwiftUI, Swift Charts · iOS 26+
 
-### [m5-rotary-dial](https://github.com/sleepypod/m5-rotary-dial)
+### [sleepypod Dial](https://github.com/sleepypod/m5-rotary-dial)
 
-Firmware for the M5Stack Dial (ESP32-S3), a bedside knob for one side of the bed. Turn to set a target, click for off, and a red-on-black night theme after 10 pm. Includes a two-part printable enclosure, also on [MakerWorld](https://makerworld.com/en/models/3365781-sleepypod-dial-enclosure-for-m5stack-dial).
+A bedside controller built on the M5Stack Dial (ESP32-S3) for one side of the bed. Turn to set a target, click for off, and a red-on-black night theme after 10 pm. Includes a two-part printable enclosure, also on [MakerWorld](https://makerworld.com/en/models/3365781-sleepypod-dial-enclosure-for-m5stack-dial).
 
 **Stack:** C++, PlatformIO, ESP32-S3
 
@@ -40,13 +42,13 @@ graph TD
     end
 
     subgraph OnPod ["Running on Pod"]
-        CORE["sleepypod/core"]
+        CORE["sleepypod Core"]
         BIO["Biometrics Sidecars"]
     end
 
     BROWSER["Browser"]
-    IOS["sleepypod/ios<br/><i>Swift · iOS</i>"]
-    DIAL["sleepypod/m5-rotary-dial<br/><i>C++ · ESP32-S3</i>"]
+    IOS["sleepypod iOS<br/><i>Swift · iOS</i>"]
+    DIAL["sleepypod Dial<br/><i>C++ · ESP32-S3</i>"]
     HA["Home Assistant"]
     HOME["Apple Home"]
     AGENT["AI agent"]
