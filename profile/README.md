@@ -1,6 +1,6 @@
 # sleepypod
 
-Self-hosted control, scheduling, automation, and biometrics for Pod mattress covers (Pod 3, 4, and 5). Everything runs locally on the Pod's embedded Linux. No cloud account, no internet required.
+Self-hosted control, scheduling, automation, and biometrics for Pod mattress covers (Pod 3, 4, and 5). Core runs locally on the Pod's embedded Linux; companion apps and training tools run on your own devices. No cloud account, no internet required.
 
 **Video tour:** [See sleepypod Core in action](https://sleepypod.github.io/core/tour/)
 
@@ -25,6 +25,12 @@ Native iOS companion for temperature control and sleep tracking. Radial dial, sc
 A bedside controller built on the M5Stack Dial (ESP32-S3) for one side of the bed. Turn to set a target, click for off, and a red-on-black night theme after 10 pm. Includes a two-part printable enclosure, also on [MakerWorld](https://makerworld.com/en/models/3365781-sleepypod-dial-enclosure-for-m5stack-dial).
 
 **Stack:** C++, PlatformIO, ESP32-S3
+
+### [sleepypod Training](https://github.com/sleepypod/training)
+
+A local workspace for training and evaluating sleep-stage models. Watch training progress live, reopen historical runs, and compare Pod, candidate, baseline, and Apple Watch stages side by side. Includes explanations of technical terms, an OKF knowledge base, and portable model exports. Reads data from the Pod's local API and saves candidates on your computer without activating them.
+
+**Stack:** Python, scikit-learn, NumPy, SciPy, TypeScript · [Training guide](https://sleepypod.github.io/developers/training/) · [Screenshots and setup](https://github.com/sleepypod/training#training-workspace)
 
 ### [sleepypod.github.io](https://github.com/sleepypod/sleepypod.github.io)
 
@@ -52,6 +58,7 @@ graph TD
     HA["Home Assistant"]
     HOME["Apple Home"]
     AGENT["AI agent"]
+    TRAINING["sleepypod Training<br/><i>Local computer · Python</i>"]
 
     BROWSER -- "HTTP" --> CORE
     IOS -- "Local API" --> CORE
@@ -59,6 +66,7 @@ graph TD
     HA <-- "MQTT" --> CORE
     HOME <-- "HomeKit" --> CORE
     AGENT -- "MCP" --> CORE
+    TRAINING -- "Read-only local API" --> CORE
 
     CORE <-- "Unix Socket" --> DAC
     CORE --> BIO
